@@ -3,7 +3,10 @@ package Pegas.seminar1.task2;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 
 public class Cart <T extends Food>{
     @Getter
@@ -26,42 +29,37 @@ public class Cart <T extends Food>{
         });
     }
     public void cardBalancing(){
-        boolean proteins = false;
-        boolean fats = false;
-        boolean carbonhydrates = false;
-        for(T i: foodstuffs){
-            if(!proteins && i.getProteins()){
-                proteins=true;
-            } else if (!fats  && i.getFats()) {
-                fats = true;
-            } else if (!carbonhydrates && i.getCarbohydrates()) {
-                carbonhydrates = true;
-            }if(carbonhydrates&& fats&& proteins){
-                break;
-            }
-        }
+        boolean proteins = checkFlag(Food::getProteins);
+        boolean fats = checkFlag(Food::getFats);
+        boolean carbonhydrates = checkFlag(Food::getCarbohydrates);
+
         if(carbonhydrates && fats && proteins){
-            System.out.println("Your cart is balance for PFC");
+            System.out.println("Your cart already is balance for PFC");
             return;
         }
-        for(T i:market.getThinds(clazz)){
-            if(!proteins && i.getProteins()){
-                proteins=true;
-                foodstuffs.add(i);
-            } else if (!fats  && i.getFats()) {
-                fats = true;
-                foodstuffs.add(i);
-            } else if (!carbonhydrates && i.getCarbohydrates()) {
-                carbonhydrates = true;
-                foodstuffs.add(i);
-            }if(carbonhydrates&& fats&& proteins){
-                break;
-            }
-        }
+        Collection<T> coll = market.getThinds(clazz);
+        proteins = checkNutrient(proteins, Food::getProteins, coll);
+        fats = checkNutrient(fats, Food::getFats, coll);
+        carbonhydrates = checkNutrient(carbonhydrates, Food::getCarbohydrates, coll);
+
         if(carbonhydrates && fats && proteins){
             System.out.println("Your cart is balance for PFC");
 
         }else System.out.println("Your cart isn't balance for PFC");
 
+    }
+    private boolean checkFlag(Predicate<T> food) {
+        Optional<T> check = foodstuffs.stream().filter(food).findFirst();
+        return check.isPresent();
+    }
+    private boolean checkNutrient (boolean flag, Predicate<Food> check, Collection<T> coll) {
+        if (!flag) {
+            Optional<T> optionalFood = coll.stream()
+                    .filter(check)
+                    .findFirst();
+            optionalFood.ifPresent(foodstuffs::add);
+            return optionalFood.isPresent();
+        }
+        return true;
     }
 }
