@@ -3,6 +3,7 @@ package Pegas.seminar1.task2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class UMarket {
     private final Collection<Thing> things;
@@ -44,5 +45,11 @@ public class UMarket {
                 .map(clazz::cast)
                 .findFirst().orElse(null);
     }
+    public <T extends Thing> Collection<T> getThinds(Class<T> clazz){
+        return things.stream().filter(clazz::isInstance)
+                .map(clazz::cast)
+                .collect(Collectors.toList());
+    }
+
 
 }

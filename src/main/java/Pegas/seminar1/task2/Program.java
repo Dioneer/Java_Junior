@@ -29,26 +29,47 @@ public class Program {
                         System.out.println("show list of things");
                         uMarket.printThing(Thing.class);
                     }
-                    case 2 -> {
-                        System.out.println("show list of snaks");
-                        uMarket.printThing(Snack.class);
-                    }
-                    case 3 -> {
-                        System.out.println("show list of semifinichedfood");
-                        uMarket.printThing(SemiFinishedFood.class);
-                    }
-                    case 4 -> {
-                        System.out.println("show list of healthyfood");
-                        uMarket.printThing(HealthyFood.class);
-                    }
-                    case 5 -> {
-                        System.out.println("show list of food");
-                        uMarket.printThing(Food.class);
-                    }
+                    case 2 -> CreateCart(Snack.class, uMarket);
+                    case 3 -> CreateCart(SemiFinishedFood.class, uMarket);
+                    case 4 -> CreateCart(HealthyFood.class, uMarket);
+                    case 5 -> CreateCart(Food.class, uMarket);
                 }
             }else{
                 System.out.println("Uncorrect menu item. \nPlease try again");
             }
         }
+    }
+    static <T extends Food> void CreateCart(Class<T> clazz, UMarket uMarket){
+        Cart<T> cart = new Cart<>(uMarket, clazz);
+        while (true){
+            System.out.println("List of things");
+            System.out.println("[0] finish of making cart + balance");
+            uMarket.printThing(clazz);
+            System.out.println("Enter thing number for enter to the cart: ");
+            if(scanner.hasNextInt()){
+                int no = scanner.nextInt();
+                scanner.nextLine();
+                if(no == 0){
+                    cart.cardBalancing();
+                    System.out.println("Your cart has items: ");
+                    cart.printFoodStuffs();
+                    return;
+                }else{
+                    T thing = uMarket.getThingByIndex(clazz, no);
+                    if(thing==null){
+                        System.out.println("Uncorrected number of the thing. \nPlease, repeat your choice");
+                        continue;
+                    }
+                    cart.getFoodstuffs().add(thing);
+                    System.out.println("Your item is successfully added");
+                    System.out.println("Your cart has items: ");
+                    cart.printFoodStuffs();
+                }
+            }else{
+                System.out.println("Uncorrected number of the menu. \nPlease, repeat your choice");
+                scanner.nextLine();
+            }
+        }
+
     }
 }
