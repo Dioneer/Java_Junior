@@ -37,6 +37,7 @@ public class Cart <T extends Food>{
             System.out.println("Your cart already is balance for PFC");
             return;
         }
+
         Collection<T> coll = market.getThinds(clazz);
         proteins = checkNutrient(proteins, Food::getProteins, coll);
         fats = checkNutrient(fats, Food::getFats, coll);
@@ -48,6 +49,7 @@ public class Cart <T extends Food>{
         }else System.out.println("Your cart isn't balance for PFC");
 
     }
+
     private boolean checkFlag(Predicate<T> food) {
         Optional<T> check = foodstuffs.stream().filter(food).findFirst();
         return check.isPresent();

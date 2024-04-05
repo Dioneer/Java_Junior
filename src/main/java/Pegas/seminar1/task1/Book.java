@@ -10,12 +10,4 @@ public class Book {
     private final String author;
     private final int year;
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "title='" + getTitle() + '\'' +
-                ", author='" + getAuthor() + '\'' +
-                ", year=" + year +
-                '}';
-    }
 }
