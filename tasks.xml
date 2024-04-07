@@ -1,0 +1,18 @@
+<ArrayList>
+  <item>
+    <title>Go to the shop</title>
+    <done>false</done>
+  </item>
+  <item>
+    <title>Walk with dog</title>
+    <done>false</done>
+  </item>
+  <item>
+    <title>Change the lamp</title>
+    <done>true</done>
+  </item>
+  <item>
+    <title>swim this evning</title>
+    <done>false</done>
+  </item>
+</ArrayList>
