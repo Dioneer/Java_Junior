@@ -1,5 +1,7 @@
 package Pegas.Seminar3.hw;
 
+import com.ctc.wstx.exc.WstxOutputException;
+
 import java.io.IOException;
 
 import static Pegas.Seminar3.hw.Utils.*;
