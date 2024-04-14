@@ -11,7 +11,7 @@ public class DateConverter implements AttributeConverter<LocalTime, Time> {
     public Time convertToDatabaseColumn(LocalTime attribute) {
         return Optional.ofNullable(attribute)
                 .map(Time::valueOf)
-                .orElseThrow(null);
+                .orElse(null);
     }
 
     @Override
