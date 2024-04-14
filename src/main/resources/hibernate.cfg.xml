@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--    Postgresql driver  -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <!--    Postgresql account name  -->
+        <property name="connection.username">root</property>
+        <!--    Postgresql password  -->
+        <property name="connection.password">123456</property>
+        <!--    Postgresql connectionURL  -->
+        <property name="connection.url">jdbc:mysql://localhost:3307/SchoolDB</property>
+        <!--    Database dialect  -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--    Display SQL statement  -->
+        <property name="show_sql">true</property>
+        <!--    Format SQL statement  -->
+        <property name="format_sql">true</property>
+        <!--        for use test-->
+        <!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+<!--        <property name="hibernate.cache.use_second_level_cache">true</property>-->
+<!--        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>-->
+
+<!--        <property name="hibernate.current_session_context_class">thread</property>-->
+
+        <mapping class="Pegas.seminar4.hw4.entity.Course"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -8,7 +8,7 @@ public class DataBase {
         Start start = new Start();
 //        start.createMethod();
 //        start.updateMethod();
-        start.selectMethod();
+//        start.selectMethod();
     }
 }
 //statement.setLong(1, id);

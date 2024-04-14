@@ -1,4 +1,7 @@
-package Pegas.seminar4.models;
+package Pegas.seminar4.models.utils;
+
+
+import Pegas.seminar4.models.enity.Student;
 
 import java.util.Random;
 
@@ -10,4 +13,7 @@ public final class StudentsFactory {
         return new Student(names[random.nextInt(names.length)], random.nextInt(20,26));
     }
     private StudentsFactory(){}
+
+    public static void updateAge(Student student){student.setAge(random.nextInt(20, 40));}
+    public static void updateName(Student student){student.setName(names[random.nextInt(names.length)]);}
 }

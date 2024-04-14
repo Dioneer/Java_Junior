@@ -1,4 +1,4 @@
-package Pegas.seminar4.models;
+package Pegas.seminar4.models.enity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,4 +23,5 @@ public class Student {
         this.name = name;
         this.age = age;
     }
+
 }
