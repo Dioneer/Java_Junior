@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
 
 import java.time.LocalTime;
 
@@ -15,6 +17,7 @@ import java.time.LocalTime;
 @Data
 @Entity
 @Table(name = "courses")
+@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class Course implements BaseEntity<Integer>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +27,7 @@ public class Course implements BaseEntity<Integer>{
 //    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     @Temporal(TemporalType.TIME)
     private LocalTime duration;
+    @Version
+    private Long version;
 
 }
