@@ -31,7 +31,9 @@ duration time
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="65c2778b-a4e9-437f-aef2-57d7afd786cd" object-ref="schemas/SchoolDB/tables/courses" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="bd504b61-2fa8-4721-953b-63c8f8953042" />

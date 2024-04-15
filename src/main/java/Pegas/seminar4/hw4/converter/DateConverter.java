@@ -7,17 +7,18 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 public class DateConverter implements AttributeConverter<LocalTime, Time> {
+
     @Override
     public Time convertToDatabaseColumn(LocalTime attribute) {
         return Optional.ofNullable(attribute)
-                .map(Time::valueOf)
+                .map(i->Time.valueOf(i))
                 .orElse(null);
     }
 
     @Override
     public LocalTime convertToEntityAttribute(Time dbData) {
         return Optional.ofNullable(dbData)
-                .map(Time::toLocalTime)
+                .map(i->i.toLocalTime())
                 .orElse(null);
     }
 }

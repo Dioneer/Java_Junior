@@ -17,9 +17,10 @@ public class Program {
             session.beginTransaction();
             Course course = Course.builder()
                     .title("Chemistry")
-                    .duration(LocalTime.of(2,15, 0))
+                    .duration(LocalTime.parse("03:15:00"))
                     .build();
             session.persist(course);
+            session.close();
             session.getTransaction().commit();
         }
         /**
@@ -28,9 +29,9 @@ public class Program {
         try(SessionFactory sessionFactory = HibernateConnectionUtil.buildSessionFactory();
             Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            Course course = session.get(Course.class, 3);
+            Course course = session.get(Course.class, 7);
             course.setTitle("Java");
-            session.update(course);
+//            session.clear();
             session.getTransaction().commit();
         }
         /**
@@ -39,7 +40,7 @@ public class Program {
         try(SessionFactory sessionFactory = HibernateConnectionUtil.buildSessionFactory();
             Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            Course course = session.get(Course.class, 3);
+            var course = session.createQuery("select c from Course c where c.id=11").list();
             System.out.println(course);
             session.getTransaction().commit();
         }

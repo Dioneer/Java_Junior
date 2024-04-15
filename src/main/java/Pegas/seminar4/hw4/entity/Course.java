@@ -15,11 +15,14 @@ import java.time.LocalTime;
 @Data
 @Entity
 @Table(name = "courses")
-public class Course{
+public class Course implements BaseEntity<Integer>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String title;
-    @Convert(converter = DateConverter.class)
-    LocalTime duration;
+    private Integer id;
+    private String title;
+//    @Convert(converter = DateConverter.class)
+//    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Temporal(TemporalType.TIME)
+    private LocalTime duration;
+
 }
