@@ -2,10 +2,8 @@ package Pegas.seminar4.hw4.dao;
 
 import Pegas.seminar4.hw4.entity.BaseEntity;
 import jakarta.persistence.EntityManager;
-import lombok.Cleanup;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
 import java.util.List;
